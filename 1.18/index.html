@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            list-style: circle;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            
+        }
+        header {
+            background-color: #000;
+            height: 44px;
+            padding: 0 18px;
+        }
+        .hamburger-container {
+            display: block;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 16px;
+        }
+        .hamburger-container span{
+
+            display: block;
+            height: 1px;
+            background-color: #fff;
+            position: relative;
+            transition: transform .3s ease-in-out, top .3s ease-in-out .3s;
+            top: 0;
+        }
+        .hamburger-container span:nth-child(2){
+            margin-top: 7px;
+        }
+        #toggler:checked + label .hamburger-container span:nth-child(1){
+            transform: rotate(45deg);
+            top: 4px;
+            transition: top .3s ease-in-out, transform 0.3s ease-in-out .3s;
+        }
+        #toggler:checked + label .hamburger-container span:nth-child(2){
+            transform: rotate(-45deg);
+            top: -4px;
+            transition: top .3s ease-in-out, transform 0.3s ease-in-out .3s;
+        }
+        #toggler{
+            display: none;
+        }
+        .nav-items {
+            background-color: rgba(0, 0, 0, .82);
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            left: 0;
+            top: 44px;
+            transform: scaleY(0);
+            transition: transform .3s ease-in-out, opacity .3s ease-in-out .3s;;
+            transform-origin: 50% 0;
+            opacity: 0;
+        }
+        #toggler:checked ~ .nav-items {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .nav-items ul{
+            margin-top: 1em;
+        }
+        .nav-items ul li {
+            display: block;
+            height: 34px;
+            line-height: 34px;
+            color: #fff;
+            border-bottom: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    
+<header>
+    <input type="checkbox" id="toggler">
+    <label for="toggler">
+        <div class="hamburger-container">
+            <span></span>
+            <span></span>
+        </div>
+    </label>
+    <div class="nav-items">
+        <ul>
+            <li>Home</li>
+            <li>iPhone</li>
+            <li>ipad</li>
+            <li>Mac</li>
+            <li>TV</li>
+        </ul>
+    </div>
+</header>
+</body>
+</html>
