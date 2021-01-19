@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            height: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+        header > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            --offset: 0px;
+            --blur: 0px
+        }
+        header > div >img {
+            display: block;
+            width: 110%;
+            height: 100%;
+            object-fit: cover;
+
+            transform: translateX(var(--offset));
+            filter: blur(var(--blur));
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div><img src="src/1.png"></div>
+        <div><img src="src/2.png"></div>
+        <div><img src="src/3.png"></div>
+        <div><img src="src/4.png"></div>
+        <div><img src="src/5.png"></div>
+        <div><img src="src/6.png"></div>
+    </header>
+</body>
+<script>
+    const images = document.querySelectorAll('header > div > img')
+
+    document.querySelector('header').addEventListener('mousemove',(e)=>{
+        let percentage = e.clientX / window.outerWidth //变量等于0为最左窗口，变量等于1为窗口最右
+        let offset = 10*percentage
+        let blur =20
+
+        for (const [index, image] of images.entries()) {
+            offset *= 1.3
+
+            let blurValue = (Math.pow((index / images.length - percentage),2)*blur)
+            image.style.setProperty('--offset', `${offset}px`)
+            image.style.setProperty('--blur', `${blurValue}px`)
+        }
+    })
+</script>
+</html>
