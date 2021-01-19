@@ -50,7 +50,7 @@
 </body>
 <script>
     const images = document.querySelectorAll('header > div > img')
-
+    console.log(images)
     document.querySelector('header').addEventListener('mousemove',(e)=>{
         let percentage = e.clientX / window.outerWidth //变量等于0为最左窗口，变量等于1为窗口最右
         let offset = 10*percentage
@@ -64,5 +64,23 @@
             image.style.setProperty('--blur', `${blurValue}px`)
         }
     })
+    //启动定时器 眨眼睛效果
+    setInterval(() => {
+        setTimeout(() => {
+            images[1].src = 'src/2-zha.png';
+        });
+    
+        setTimeout(() => {
+            images[1].src = 'src/2-bi.png';
+        }, 100);
+    
+        setTimeout(() => {
+            images[1].src = 'src/2-zha.png';
+        }, 200);
+    
+        setTimeout(() => {
+            images[1].src = 'src/2.png';
+        }, 300);
+    }, 3000);
 </script>
 </html>
