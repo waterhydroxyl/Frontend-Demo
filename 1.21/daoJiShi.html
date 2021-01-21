@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../public/js/vue.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: aquamarine;
+    }
+    .circle {
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+    }
+    #countNum {
+        display: inline-block;
+        position: relative;
+    }
+    span{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-52%);
+        font-size: 50px;
+        
+    }
+</style>
+<body>
+    <div id="app" @click="animate">
+        <div id="countNum">
+            <span> {{countdown}}</span>
+            <svg width="120" height="120">
+                <circle class="circle"
+                    fill="transparent"
+                    stroke-width="10"
+                    stroke="#eee"
+                    :r="redius"
+                    :cx="circleOffset"
+                    :cy="circleOffset"
+                ></circle>
+                
+                <circle class="circle"
+                    fill="transparent"
+                    stroke-width="10"
+                    stroke="#000"
+                    :r="redius"
+                    :cx="circleOffset"
+                    :cy="circleOffset"
+                    :stroke-dasharray="circumference"
+                    :stroke-dashoffset="progress"
+                    stroke-linecap="round"
+                ></circle>
+            </svg>
+        </div>
+    </div>
+    
+</body>
+<script>
+    
+    new Vue({
+        el:'#app',
+        data: {
+            size: 120,
+            stroke: 20,
+            percentage: 100,
+            timer: null,
+            seconds:10,
+        },
+        computed: {
+            redius(){
+                return (this.size / 2) - (this.stroke / 2)
+            },
+            circleOffset(){
+                return this.size / 2
+            },
+            circumference(){
+                return this.redius * 2 * Math.PI
+            },
+            progress(){
+                return this.circumference - this.circumference * this.percentage / 100
+            },
+            countdown(){
+                return Math.ceil(this.seconds * this.percentage / 100)
+            }
+        },
+        methods: {
+            animate(){
+                this.timer = setInterval(() => {
+                    this.percentage = this.percentage - 0.1;
+
+                    if (this.percentage <=0) {
+                        clearInterval(this.timer)
+                        this.percentage=100;
+                    }
+
+                }, this.seconds * 1000 / 100 / 10);//乘以一千化为秒单位，除以100化为百分比
+          
+            }
+        },
+        
+    })
+</script>
+</html>
