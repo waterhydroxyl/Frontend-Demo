@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    :root {
+        font-size: 32px;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: Helvetica;
+    }
+
+    #container {
+        width: 600px;
+    }
+
+    h1 {
+        margin: 0;
+        letter-spacing: -2px;
+    }
+
+    p {
+        font-size: .9rem;
+        color: #666;
+        line-height: 1.3rem;
+        position: relative;
+        top: .8rem;
+        opacity: 0;
+        animation: .5s swift-up ease-out forwards, .5s fade-in ease-out forwards;
+        animation-delay: .8s;
+    }
+
+    @keyframes fade-in {
+        to {
+            opacity: 1;
+        }
+    }
+
+    span {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        top: .8rem;
+        animation-delay: calc(var(--i) * 0.1s);
+        animation: .5s swift-up ease-in-out forwards;
+    }
+
+    span::before{
+        content: "";
+        display: block;
+        position: relative;
+        height: 100%;
+    }
+
+    i {
+        font-style: normal;
+        position: relative;
+        top: 2rem;
+        animation-delay: calc(var(--i) * 0.1s);
+        animation: .5s swift-up ease-in-out forwards;
+    }
+
+    @keyframes swift-up {
+        to {
+            top: 0rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>
+          <span style="--i: 0"><i>The</i></span>
+          <span style="--i: 1"><i>best</i></span>
+          <span style="--i: 2"><i>website</i></span>
+          <span style="--i: 3"><i>make</i></span>
+          <span style="--i: 4"><i>with</i></span>
+          <span style="--i: 5"><i>❤</i></span>
+        </h1>
+        <p>
+          Create, prototype, collaborate, and bring your ideas to life with the design platform used by over one million people — from freelancers, to the world’s largest teams.
+        </p>
+    </div>
+</body>
+</html>
