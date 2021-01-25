@@ -20,8 +20,8 @@ JavaScript高阶函数map、filter、reduce方法
 ### map()函数用于对数组或对象进行处理,并返回处理之后的数组.
 ### filter()函数用于筛选出符合要求的数据,并返回该数据集合.
 reduce()函数用于把数组或对象归结为一个值,并返回这个值array.reduce(function(total, currentValue, currentIndex, arr), initialValue) ~~initialValue值可缺省~~ （踩坑）涉及对象不可缺省.
-```JavaScrip
-let arr = [10, 20, 30, 40, 50, 60];
+```JavaScript
+        let arr = [10, 20, 30, 40, 50, 60];
         // 要求找出小于40的元素*2再让这个数组的每个元素相加
         // 链式写法：
         let newArr = arr.filter(function(n) {
@@ -37,7 +37,7 @@ let arr = [10, 20, 30, 40, 50, 60];
         let new2Arr = arr.filter(n => n < 40).map(n => n * 2).reduce((pre, n) => pre + n);
         console.log(new2Arr);
 ```
-```JavaScrip
+```JavaScript
 getTotal(){            
     return this.books.reduce(function(preValue, book){
          return preValue + book.price * book.count
