@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../public/js/vue.min.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>书籍名称</th>
+                    <th>价格</th>
+                    <th>购买数量</th>
+                    <th>价格</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+                <tr v-for="(item, index) in books" >
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price | showPrice}}</td>
+                    <td>
+                        <button @click="sum(index)" v-bind:disabled = "item.count <= 0">-</button>
+                        {{item.count}}
+                        <button @click="add(index)" v-bind:disabled = "item.count >= 10">+</button>
+                    </td>
+                    <td>{{tdTotal(index) | showPrice}}</td>
+                    <td><button @click="removeItem(index)">移除</button></td>
+                </tr>
+            <tbody>
+
+            </tbody>
+            
+        </table>
+        <p>总价：{{getTotal | showPrice}}</p>
+    </div>
+    
+</body>
+<script>
+    
+    new Vue({
+        el:'#app',
+        data:{
+            
+            total: 0,
+            books:[{
+                id: 1,
+                name: '《数据结构》',
+                price: 85.0,
+                count: 0,
+            },
+            {
+                id: 2,
+                name: '《计算机网络》',
+                price: 60.0,
+                count: 0,
+            },
+            {
+                id: 3,
+                name: '《操作系统》',
+                price: 96.0,
+                count: 0,
+            },
+            {
+                id: 4,
+                name: '《汇编语言》',
+                price: 58,
+                count: 0,
+            }],
+        },
+        computed: {
+            getTotal(){
+                
+                // return this.books.reduce(function(preValue, book){
+                //     return preValue + book.price * book.count
+                // },0)
+
+                //return this.books.reduce((pre, book) => pre + book.price * book.count)
+                
+                return this.books.reduce((preValue, item) => 
+                preValue + item.price * item.count, 0) 
+            }
+        },
+        methods: {
+            add(index) {
+                this.books[index].count ++
+                
+                if (this.books[index].count >= 10) {
+                    setTimeout(function() 
+                    {alert('限购十本！')}
+                    ,600)   
+                }
+            },
+            sum(index) {
+                // if (this.books[index].count<=0) {
+                //     return
+                // } else {
+                //     this.books[index].count --
+                // }
+                this.books[index].count --
+            },
+            tdTotal(index){
+                return this.books[index].count *this.books[index].price;
+                //return Number(this.books[index].count) * Number(this.books.price)
+            },
+            removeItem(index) {
+                this.books[index].splice(index, 1);
+            }
+        },
+        filters: {
+            showPrice(price){
+                return '$' + price.toFixed(2)
+            }
+        }
+            
+    })
+</script>
+</html>

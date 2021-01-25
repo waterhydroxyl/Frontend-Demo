@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+table {
+    width: 35vw;
+    height: 40vh;
+    border: 1px soil #e9e9e9;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+table button {
+    width: 34px;
+}
+th, td {
+    padding: 8px;
+    border: 1px solid #e9e9e9;
+    text-align: left;
+}
+
+th {
+    background-color: #f7f7f7;
+    color: #5c6b77;
+    font-weight: 600;
+}
