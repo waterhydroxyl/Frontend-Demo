@@ -16,7 +16,7 @@
 ```
 
 ## 1.25
-###JavaScript高阶函数map、filter、reduce方法
+### JavaScript高阶函数map、filter、reduce方法
 #### map()函数用于对数组或对象进行处理,并返回处理之后的数组.
 #### filter()函数用于筛选出符合要求的数据,并返回该数据集合.
 #### reduce()函数用于把数组或对象归结为一个值,并返回这个值
