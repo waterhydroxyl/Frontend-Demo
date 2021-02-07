@@ -39,14 +39,58 @@ array.reduce(function(total, currentValue, currentIndex, arr), initialValue) ~~i
         console.log(new2Arr);
 ```
 ```JavaScript
-getTotal(){            
-    return this.books.reduce(function(preValue, book){
-         return preValue + book.price * book.count
-    },0)
+getTotal()
+{
+    return this.books.reduce(function (preValue, book) {
+        return preValue + book.price * book.count
+    }, 0)
 
     //return this.books.reduce((pre, book) => pre + book.price * book.count) 返回了 [object Object]000
-               
-    return this.books.reduce((preValue, item) => preValue + item.price * item.count, 0) 
+
+    return this.books.reduce((preValue, item) => preValue + item.price * item.count, 0)
 }
 ```
+
 [208-图解 Map、Reduce 和 Filter 数组方法](https://cloud.tencent.com/developer/article/1470133)
+
+## 2.7
+
+### 视差滚动
+
+1.建立一个容器元素，设置 overflow-y: scroll 使其可以滚动（同时可能需要 overflow-x: hidden）。
+
+2.对于上面的元素, 我们会应用一个 perspective 值，然后设置 perspective-origin 到 top left, 或者 0 0。
+
+3.对上面元素的子元素应用一个在 Z 轴的变换，然后把它们还原回来以实现视差效果，而没有影响它们在屏幕上的大小。
+
+### 原理解析
+
+这里把scale设为S，pespcetive->P,translateZ->D //注意D一般是负值 那么有公式S=(P-D)/P。
+
+![RUNOOB 图标](https://upload-images.jianshu.io/upload_images/23336154-6d92346175afc4b3.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+```css
+/*父元素*/
+perspective:
+
+1
+px
+
+;
+/*子元素*/
+transform:
+
+translateZ
+(
+-
+2
+px
+
+)
+scale
+(
+3
+)
+;
+/*缩小比例=滚动速度比=P/(P-D)*/
+```
