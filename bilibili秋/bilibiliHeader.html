@@ -14,7 +14,7 @@
             position: relative;
             overflow: hidden;
         }
-        header > div {
+        header div {
             position: absolute;
             top: 0;
             left: 0;
@@ -23,11 +23,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
             --offset: 0px;
             --blur: 0px
         }
-        header > div >img {
+        header div img {
             display: block;
             width: 110%;
             height: 100%;
@@ -49,7 +48,7 @@
     </header>
 </body>
 <script>
-    const images = document.querySelectorAll('header > div > img')
+    const images = document.querySelectorAll('header div img')
     console.log(images)
     document.querySelector('header').addEventListener('mousemove',(e)=>{
         let percentage = e.clientX / window.outerWidth //变量等于0为最左窗口，变量等于1为窗口最右
