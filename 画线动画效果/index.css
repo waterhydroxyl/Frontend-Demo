@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 60px;
+  width: 220px;
+  line-height: 1em;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+h1>svg {
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  z-index: -1;
+}
+
+#tick {
+  stroke-dasharray: 210px;
+  stroke-dashoffset: 210px;
+  animation: 3s tick ease-in-out infinite;
+}
+
+@keyframes tick {
+
+  0%,
+  50% {
+    stroke-dashoffset: 210px;
+  }
+  
+  50%, 100% {
+    stroke-dashoffset: 0px;
+  }
+}
